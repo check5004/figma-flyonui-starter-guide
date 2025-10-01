@@ -447,6 +447,35 @@
             background: #667eea;
             color: white;
         }
+        
+        /* GitHub Button Styles */
+        .github-button {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            color: #2d3748;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .github-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            background: #f7fafc;
+        }
+        
+        .github-button svg {
+            transition: transform 0.3s;
+        }
+        
+        .github-button:hover svg {
+            transform: rotate(360deg);
+        }
     </style>
 </head>
 <body>

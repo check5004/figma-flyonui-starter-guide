@@ -12,6 +12,9 @@ const translations = {
     badge_beginner: "初心者OK",
     badge_ai: "AI活用",
     
+    // GitHub button
+    github_button: "GitHubで見る",
+    
     // Navigation
     nav_intro: "はじめに",
     nav_basics: "基本原則",
@@ -326,6 +329,9 @@ const translations = {
     badge_beginner: "Beginner Friendly",
     badge_ai: "AI Powered",
     
+    // GitHub button
+    github_button: "View on GitHub",
+    
     // Navigation
     nav_intro: "Introduction",
     nav_basics: "Basic Principles",
@@ -639,6 +645,9 @@ const translations = {
     badge_atomic: "Atomic Design",
     badge_beginner: "Thân thiện người mới",
     badge_ai: "Hỗ trợ AI",
+    
+    // GitHub button
+    github_button: "Xem trên GitHub",
     
     // Navigation
     nav_intro: "Giới thiệu",
