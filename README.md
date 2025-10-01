@@ -4,6 +4,8 @@
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://check5004.github.io/figma-flyonui-starter-guide/)
 [![Languages](https://img.shields.io/badge/Languages-3-blue)](https://check5004.github.io/figma-flyonui-starter-guide/)
 [![GitHub repo size](https://img.shields.io/github/repo-size/check5004/figma-flyonui-starter-guide)](https://github.com/check5004/figma-flyonui-starter-guide)
+[![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/)
+[![FlyonUI](https://img.shields.io/badge/FlyonUI-000000?logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkw0IDE4TDEyIDIyTDIwIDE4TDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==&logoColor=white)](https://flyonui.com/)
 
 このドキュメントは、FlyonUIとFigmaを使用した大規模業務アプリケーション設計のガイドです。
 
