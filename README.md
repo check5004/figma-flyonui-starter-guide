@@ -1,6 +1,21 @@
 # FlyonUI × Figma 実践ガイド (Multilingual Version)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://check5004.github.io/figma-flyonui-starter-guide/)
+[![Languages](https://img.shields.io/badge/Languages-3-blue)](https://check5004.github.io/figma-flyonui-starter-guide/)
+[![GitHub repo size](https://img.shields.io/github/repo-size/check5004/figma-flyonui-starter-guide)](https://github.com/check5004/figma-flyonui-starter-guide)
+
 このドキュメントは、FlyonUIとFigmaを使用した大規模業務アプリケーション設計のガイドです。
+
+## 🌐 デモサイト / Demo Site / Site Demo
+
+このガイドは以下のURLでオンライン公開されています：
+
+**🔗 [https://check5004.github.io/figma-flyonui-starter-guide/](https://check5004.github.io/figma-flyonui-starter-guide/)**
+
+The guide is published online at the URL above.
+
+Hướng dẫn được xuất bản trực tuyến tại URL ở trên.
 
 ## 🌍 対応言語 / Supported Languages / Ngôn ngữ được hỗ trợ
 
