@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">FlyonUI × Figma 初心者のための実践ガイド | 大規模業務アプリ設計</title>
+    <meta name="description" content="FlyonUI × Figmaで大規模業務アプリを設計する初心者向けの実践ガイド。Atomic Design、ハイブリッド戦略、コンポーネント階層を視覚的に学べます。">
+    <meta name="keywords" content="Figma, FlyonUI, Atomic Design, コンポーネント設計, デザインシステム, UIデザイン, 初心者ガイド">
+    <meta name="author" content="FlyonUI × Figma Guide">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FlyonUI × Figma 初心者のための実践ガイド">
+    <meta property="og:description" content="大規模業務アプリ設計をFigmaで実現するための完全ガイド。Atomic Design階層からFlyonUIハイブリッド戦略まで、実践的に学べます。">
+    <meta property="og:locale" content="ja_JP">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FlyonUI × Figma 初心者のための実践ガイド">
+    <meta name="twitter:description" content="大規模業務アプリ設計をFigmaで実現するための完全ガイド">
+    
+    <title>FlyonUI × Figma 初心者のための実践ガイド | 大規模業務アプリ設計</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
             line-height: 1.7;
             color: #1a1a1a;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
             background: white;
             min-height: 100vh;
         }
-        
+
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 60px 40px;
             text-align: center;
         }
-        
+
         .hero h1 {
             font-size: 2.8em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         .hero .subtitle {
             font-size: 1.3em;
             opacity: 0.95;
             margin-bottom: 10px;
         }
-        
+
         .hero .target {
             font-size: 1.1em;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 15px 30px;
             border-radius: 30px;
             display: inline-block;
             margin-top: 20px;
         }
-        
+
         .badge {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 8px 16px;
             border-radius: 20px;
             margin: 10px 5px;
             font-size: 0.9em;
         }
-        
+
         nav {
             background: #2d3748;
             color: white;
@@ -69,44 +85,44 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         nav ul {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
         }
-        
+
         nav a {
             color: white;
             text-decoration: none;
             transition: color 0.3s;
         }
-        
+
         nav a:hover {
             color: #667eea;
         }
-        
+
         .content {
             padding: 40px;
         }
-        
+
         .content ul {
             margin: 15px 0;
             padding-left: 30px;
         }
-        
+
         .content li {
             margin: 10px 0;
             line-height: 1.7;
         }
-        
+
         section {
             margin-bottom: 60px;
         }
-        
+
         h2 {
             font-size: 2.5em;
             color: #667eea;
@@ -114,28 +130,28 @@
             padding-bottom: 15px;
             border-bottom: 3px solid #667eea;
         }
-        
+
         h3 {
             font-size: 1.8em;
             color: #764ba2;
             margin: 35px 0 20px 0;
         }
-        
+
         h4 {
             font-size: 1.4em;
             color: #2d3748;
             margin: 25px 0 15px 0;
         }
-        
+
         .strategy-box {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f0 100%);
             border-left: 5px solid #667eea;
             padding: 30px;
             margin: 30px 0;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         .info-box {
             background: #f0f9ff;
             border-left: 4px solid #3b82f6;
@@ -143,7 +159,7 @@
             margin: 20px 0;
             border-radius: 4px;
         }
-        
+
         .warning-box {
             background: #fff5f5;
             border-left: 4px solid #fc8181;
@@ -151,7 +167,7 @@
             margin: 20px 0;
             border-radius: 4px;
         }
-        
+
         .success-box {
             background: #f0fff4;
             border-left: 4px solid #48bb78;
@@ -159,7 +175,7 @@
             margin: 20px 0;
             border-radius: 4px;
         }
-        
+
         .beginner-tip {
             background: #fef3c7;
             border-left: 4px solid #f59e0b;
@@ -167,16 +183,16 @@
             margin: 20px 0;
             border-radius: 4px;
         }
-        
+
         .workflow-diagram {
             background: white;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
             padding: 30px;
             margin: 30px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        
+
         .file-structure {
             background: #2d3748;
             color: #e2e8f0;
@@ -188,34 +204,34 @@
             white-space: pre;
             line-height: 1.8;
         }
-        
+
         .file-structure .folder {
             color: #fbbf24;
             font-weight: bold;
         }
-        
+
         .file-structure .file {
             color: #60a5fa;
         }
-        
+
         .file-structure .component {
             color: #a78bfa;
         }
-        
+
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
             margin: 30px 0;
         }
-        
+
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin: 30px 0;
         }
-        
+
         .card {
             background: white;
             border: 2px solid #e2e8f0;
@@ -223,18 +239,18 @@
             padding: 25px;
             transition: all 0.3s;
         }
-        
+
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102,126,234,0.2);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
             border-color: #667eea;
         }
-        
+
         .card h4 {
             color: #667eea;
             margin-top: 0;
         }
-        
+
         .plugin-card {
             background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
             border: 2px solid #cbd5e0;
@@ -242,19 +258,19 @@
             padding: 20px;
             transition: all 0.3s;
         }
-        
+
         .plugin-card:hover {
             border-color: #667eea;
-            box-shadow: 0 8px 24px rgba(102,126,234,0.15);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
         }
-        
+
         .plugin-name {
             font-size: 1.2em;
             font-weight: 700;
             color: #2d3748;
             margin-bottom: 10px;
         }
-        
+
         .phase-box {
             background: white;
             border: 2px solid #667eea;
@@ -262,7 +278,7 @@
             padding: 20px;
             margin: 15px 0;
         }
-        
+
         .phase-number {
             display: inline-block;
             background: #667eea;
@@ -275,20 +291,20 @@
             font-weight: bold;
             margin-right: 10px;
         }
-        
+
         .step-list {
             counter-reset: step-counter;
             list-style: none;
             padding-left: 0;
         }
-        
+
         .step-list li {
             counter-increment: step-counter;
             margin: 20px 0;
             padding-left: 50px;
             position: relative;
         }
-        
+
         .step-list li:before {
             content: counter(step-counter);
             position: absolute;
@@ -302,31 +318,32 @@
             line-height: 35px;
             font-weight: bold;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 25px 0;
             background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-        
-        th, td {
+
+        th,
+        td {
             padding: 15px;
             text-align: left;
             border: 1px solid #e2e8f0;
         }
-        
+
         th {
             background: #667eea;
             color: white;
             font-weight: 600;
         }
-        
+
         tr:nth-child(even) {
             background: #f7fafc;
         }
-        
+
         code {
             background: #edf2f7;
             padding: 3px 8px;
@@ -335,30 +352,30 @@
             color: #e53e3e;
             font-size: 0.95em;
         }
-        
+
         .comparison-table {
             margin: 30px 0;
         }
-        
+
         .comparison-table th {
             background: #2d3748;
         }
-        
+
         .pro {
             color: #48bb78;
             font-weight: 600;
         }
-        
+
         .con {
             color: #fc8181;
             font-weight: 600;
         }
-        
+
         .highlight-text {
             background: linear-gradient(transparent 60%, #fef3c7 60%);
             font-weight: 600;
         }
-        
+
         .final-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -367,7 +384,7 @@
             text-align: center;
             margin-top: 60px;
         }
-        
+
         .final-section h2 {
             color: white;
             border: none;
@@ -411,86 +428,2824 @@
             line-height: 1.6;
             padding-right: 100px;
         }
-        
-        /* Language Switcher Styles */
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 2000;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            padding: 8px;
-            display: flex;
-            gap: 8px;
+
+        /* インタラクティブデモのスタイル */
+        .interactive-demo {
+            margin: 40px 0;
         }
-        
-        .lang-btn {
-            background: transparent;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 500;
-            color: #4a5568;
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 1200px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ui-preview,
+        .component-tree {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .ui-preview h3,
+        .component-tree h3 {
+            margin: 0 0 20px 0;
+            color: #2d3748;
+            font-size: 1.3em;
+        }
+
+        .preview-wrapper,
+        .tree-wrapper {
+            overflow: auto;
+        }
+
+        /* UIプレビューのスタイル */
+        .demo-page {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            min-height: 500px;
             transition: all 0.3s;
         }
-        
-        .lang-btn:hover {
-            background: #f7fafc;
-            color: #667eea;
-        }
-        
-        .lang-btn.active {
+
+        .demo-header {
             background: #667eea;
             color: white;
-        }
-        
-        /* GitHub Button Styles */
-        .github-button {
-            display: inline-flex;
+            padding: 15px 20px;
+            display: flex;
             align-items: center;
-            background: white;
-            color: #2d3748;
-            padding: 12px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05em;
+            gap: 20px;
+            border-radius: 8px 8px 0 0;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        
-        .github-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+
+        .demo-logo {
+            font-size: 1.5em;
+            transition: all 0.3s;
+        }
+
+        .demo-nav {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            transition: all 0.3s;
+        }
+
+        .demo-nav-item {
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .demo-nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .demo-user-menu {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .demo-avatar {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .demo-main {
+            display: flex;
+            min-height: 450px;
+        }
+
+        .demo-sidebar {
+            width: 200px;
+            background: #2d3748;
+            color: white;
+            padding: 20px 10px;
+            transition: all 0.3s;
+        }
+
+        .demo-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .demo-menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .demo-icon {
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        .demo-label {
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .demo-content {
+            flex: 1;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .demo-stats-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .demo-stat-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        .stat-title {
+            color: #718096;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .stat-value {
+            color: #2d3748;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .demo-table {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .demo-table-header,
+        .demo-table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            transition: all 0.3s;
+        }
+
+        .demo-table-cell {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .demo-table-cell.header {
             background: #f7fafc;
+            font-weight: 600;
+            color: #2d3748;
         }
-        
-        .github-button svg {
-            transition: transform 0.3s;
+
+        /* コンポーネントツリーのスタイル */
+        .tree-node {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
         }
-        
-        .github-button:hover svg {
-            transform: rotate(360deg);
+
+        .tree-node::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 50%;
+            width: 1px;
+            background: #cbd5e0;
+        }
+
+        .tree-node::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            width: 12px;
+            height: 1px;
+            background: #cbd5e0;
+        }
+
+        .tree-node:first-child::before {
+            top: 50%;
+        }
+
+        .tree-node:last-child::before {
+            bottom: 50%;
+        }
+
+        .tree-children {
+            padding-left: 15px;
+            margin-top: 8px;
+        }
+
+        .tree-icon {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+
+        .tree-label {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .tree-badge {
+            display: inline-block;
+            font-size: 0.75em;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        .tree-badge.atom {
+            background: #e6fffa;
+            color: #047857;
+        }
+
+        .tree-badge.molecule {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tree-badge.organism {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tree-badge.template {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        /* ホバー時のハイライト */
+        .highlighted {
+            background: #fef3c7 !important;
+            border-color: #f59e0b !important;
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3) !important;
+        }
+
+        .tree-node.highlighted {
+            background: #fef3c7;
+            border-radius: 6px;
+            /* サイズ変更を防ぐため、paddingとmarginは変更しない */
+        }
+
+        .tree-node.highlighted .tree-label {
+            color: #92400e;
+            font-weight: 600;
+        }
+
+        /* クリックで固定されたハイライト */
+        .pinned {
+            background: #fbbf24 !important;
+            border-color: #d97706 !important;
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.4) !important;
+        }
+
+        .tree-node.pinned {
+            background: #fbbf24;
+            border-radius: 6px;
+        }
+
+        .tree-node.pinned .tree-label {
+            color: #78350f;
+            font-weight: 700;
+        }
+
+        /* コンポーネント名のスタイル */
+        .component-name {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #6b7280;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* レベル別の背景色(薄く) */
+        .page-level > .tree-icon {
+            color: #6b21a8;
+        }
+
+        .template-level > .tree-icon {
+            color: #6b21a8;
+        }
+
+        .organism-level > .tree-icon {
+            color: #92400e;
+        }
+
+        .molecule-level > .tree-icon {
+            color: #1e40af;
+        }
+
+        .atom-level > .tree-icon {
+            color: #047857;
+        }
+
+        /* 階層ビジュアライゼーションのスタイル */
+        /* Figmaアコーディオン階層表示 */
+        .figma-hierarchy-accordion {
+            margin: 20px 0;
+        }
+
+        .figma-level-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background: white;
+            overflow: hidden;
+        }
+
+        .figma-level-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .figma-level-header:hover {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+            font-size: 0.9em;
+            color: #6b7280;
+        }
+
+        .figma-level-item.expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+
+        .level-icon {
+            font-size: 1.5em;
+        }
+
+        .level-title {
+            flex: 1;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .level-badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .figma-level-content {
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            background: #fafafa;
+        }
+
+        /* Figmaワークスペース（左右2分割） */
+        .figma-workspace {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* 左側: Figmaレイヤーパネル */
+        .figma-layers-panel {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .figma-layers-header {
+            background: #f9fafb;
+            padding: 10px 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #6b7280;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .figma-layer-tree {
+            padding: 8px;
+        }
+
+        .figma-layer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 4px;
+        }
+
+        .figma-layer:hover {
+            background: #f3f4f6;
+        }
+
+        .figma-layer.child {
+            margin-left: 20px;
+            font-size: 0.95em;
+        }
+
+        .figma-layer.component .layer-name {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .layer-icon {
+            font-size: 1.1em;
+        }
+
+        .layer-name {
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #374151;
+        }
+
+        .layer-instance {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .figma-layer-children {
+            margin-top: 4px;
+        }
+
+        /* 右側: Figmaキャンバス */
+        .figma-canvas-panel {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .figma-canvas-header {
+            background: #f9fafb;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .canvas-zoom {
+            color: #6b7280;
+            font-size: 0.85em;
+        }
+
+        .figma-canvas {
+            padding: 20px;
+            background: #f8f9fa;
+            min-height: 300px;
+            position: relative;
+        }
+
+        /* Figmaフレーム表示 */
+        .figma-frame {
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 16px;
+            position: relative;
+        }
+
+        .frame-label {
+            position: absolute;
+            top: -12px;
+            left: 12px;
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+
+        .figma-page-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .preview-body {
+            display: flex;
+            height: 200px;
+        }
+
+        .preview-sidebar {
+            width: 60px;
+            background: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: #4338ca;
+        }
+
+        .preview-content {
+            flex: 1;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+
+        /* Organisms Canvas */
+        .organisms-canvas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        /* Molecules Canvas */
+        .molecules-canvas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        /* Atoms Canvas */
+        .atoms-canvas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        /* コンポーネントプレビュー */
+        .figma-component-preview {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .figma-component-preview:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .component-label {
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: #667eea;
+            border: 1px solid #e0e7ff;
+        }
+
+        .variant-hint {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 12px;
+            background: #fef3c7;
+            border-radius: 6px;
+            color: #92400e;
+        }
+
+        /* Figmaプロパティパネル */
+        .figma-properties-panel {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .prop-section {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .prop-section:last-child {
+            border-bottom: none;
+        }
+
+        .prop-title {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        .prop-content {
+            font-size: 0.9em;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        /* ホバー時のサイズ変更を防ぐ */
+        .no-hover {
+            pointer-events: none;
+        }
+
+        .no-hover * {
+            pointer-events: none;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .figma-workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .figma-layers-panel {
+                max-height: 200px;
+                overflow-y: auto;
+            }
+
+            .organisms-canvas,
+            .molecules-canvas {
+                grid-template-columns: 1fr;
+            }
+
+            .atoms-canvas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .level-title {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
+
 <body>
-    <!-- Language Switcher -->
-    <div class="lang-switcher">
-        <button class="lang-btn active" onclick="switchLanguage('ja')" id="lang-ja">日本語</button>
-        <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">English</button>
-        <button class="lang-btn" onclick="switchLanguage('vi')" id="lang-vi">Tiếng Việt</button>
+    <div class="container">
+        <div class="hero">
+            <h1>🚀 FlyonUI × Figma 初心者のための実践ガイド</h1>
+            <p class="subtitle">大規模業務アプリ設計をいきなり任されたあなたへ</p>
+            <div class="target">
+                ✨ Figma初心者 × 有料UIライブラリ × 本格的な開発現場での実践戦略
+            </div>
+            <div>
+                <span class="badge">FlyonUI</span>
+                <span class="badge">ハイブリッド運用</span>
+                <span class="badge">Atomic Design</span>
+                <span class="badge">初心者OK</span>
+                <span class="badge">AI活用</span>
+            </div>
+        </div>
+
+        <nav role="navigation" aria-label="メインナビゲーション">
+            <ul role="list">
+                <li><a href="#intro">はじめに</a></li>
+                <li><a href="#basics">基本原則</a></li>
+                <li><a href="#hybrid">ハイブリッド戦略</a></li>
+                <li><a href="#plugins">必須プラグイン</a></li>
+                <li><a href="#workflow">実践ワークフロー</a></li>
+                <li><a href="#figma-mcp">AIレビュー</a></li>
+                <li><a href="#naming">命名規則</a></li>
+                <li><a href="#component-structure">階層ガイド</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- イントロダクション -->
+            <section id="intro">
+                <h2>📖 このガイドについて</h2>
+
+                <div class="beginner-tip">
+                    <h3 style="margin-top: 0;">👋 こんな方のためのガイドです</h3>
+                    <ul>
+                        <li>Figmaを触るのは初めてだけど、いきなり大規模な業務アプリの設計を任された</li>
+                        <li>FlyonUIという有料UIライブラリを使うことが決まっている</li>
+                        <li>コンポーネント設計のベストプラクティスを知りたい</li>
+                        <li>将来の拡張や変更に耐えられる設計にしたい</li>
+                        <li>開発チームとの連携をスムーズにしたい</li>
+                    </ul>
+                </div>
+
+                <h3>🎯 このガイドのゴール</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>即戦力になる</h4>
+                        <p>明日から実務で使える具体的な手順とテンプレートを提供します。</p>
+                    </div>
+                    <div class="card">
+                        <h4>破綻しない設計</h4>
+                        <p>プロジェクトの成長に耐えられる、拡張性のある設計方法を学びます。</p>
+                    </div>
+                    <div class="card">
+                        <h4>チーム連携</h4>
+                        <p>開発者との協業がスムーズになる構造を構築します。</p>
+                    </div>
+                    <div class="card">
+                        <h4>自信を持つ</h4>
+                        <p>なぜその方法が良いのか、理論と実践の両方を理解できます。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 基本ベストプラクティス -->
+            <section id="basics">
+                <h2>✅ Figmaコンポーネント設計の6つの基本原則</h2>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>1. 整理された命名規則と階層構造</h4>
+                        <p><strong>スラッシュ(/)</strong>でレイヤー名を区切り、アセットパネルでコンポーネントを自動グループ化します。</p>
+                        <code>Button/Primary/Large/Default</code>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #718096;">これにより、Assetsパネルで階層的に表示されます。</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>2. バリアントとプロパティの活用</h4>
+                        <p>類似コンポーネントは<strong>バリアント</strong>として統合し、<strong>ブーリアンプロパティ</strong>や<strong>インスタンススワッププロパティ</strong>で柔軟性を高めます。
+                        </p>
+                        <ul style="font-size: 0.9em; margin-top: 10px;">
+                            <li>State: Default, Hover, Active</li>
+                            <li>Size: Small, Medium, Large</li>
+                            <li>Icon: Boolean (表示/非表示)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>3. Auto Layoutの適用</h4>
+                        <p>柔軟なレイアウトを実現し、コンテンツの変化に<strong>自動で対応</strong>させます。</p>
+                        <ul style="font-size: 0.9em; margin-top: 10px;">
+                            <li>Padding、Gap、Resizingを適切に設定</li>
+                            <li>Min/Max Widthでレスポンシブ対応</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>4. アトミックデザインの考え方</h4>
+                        <p>最小単位(Atoms)から段階的にコンポーネントを構築します。</p>
+                        <p style="font-size: 0.9em; margin-top: 10px;">Atoms → Molecules → Organisms → Templates → Pages
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h4>5. SSOT(Single Source of Truth)</h4>
+                        <p>スタイルは<strong>ローカルスタイル</strong>(Color Styles、Text Styles)として定義し、一貫性を保ちます。</p>
+                        <p style="font-size: 0.9em; margin-top: 10px; color: #718096;">変数(Variables)も活用して、テーマ切り替えに対応。
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h4>6. チームライブラリの活用</h4>
+                        <p>コンポーネントを<strong>チーム全体で共有</strong>し、作業効率と一貫性を向上させます。</p>
+                        <p style="font-size: 0.9em; margin-top: 10px; color: #718096;">Publishして他のファイルから参照できるようにします。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ハイブリッド戦略 -->
+            <section id="hybrid">
+                <h2>🔄 FlyonUIハイブリッド運用戦略(超重要!)</h2>
+
+                <div class="beginner-tip">
+                    <h3 style="margin-top: 0;">🤔 初心者が陥りがちな誤解</h3>
+                    <p><strong>❌ 間違った認識:</strong></p>
+                    <ul>
+                        <li>「FlyonUIのコンポーネントをそのまま使えばOK」</li>
+                        <li>「コピーしてデタッチすれば自由にカスタムできる」</li>
+                        <li>「とりあえず全部FlyonUIから始めて、後で考えよう」</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>⚠️ これらは後で大きな問題を引き起こします!</strong></p>
+                </div>
+
+                <h3>✨ 正解:ハイブリッド戦略</h3>
+
+                <div class="strategy-box">
+                    <h4 style="margin-top: 0;">🎯 戦略の核心</h4>
+                    <p class="highlight-text">FlyonUIのコード基盤との整合性を保ちつつ、管理の容易さとカスタマイズの柔軟性を両立させる</p>
+
+                    <div style="margin-top: 25px;">
+                        <h4>📦 2ファイル構成</h4>
+                        <div class="phase-box">
+                            <span class="phase-number">1</span>
+                            <strong>01_DesignSystem - Master</strong>
+                            <p style="margin: 10px 0 0 45px;">FlyonUIライブラリへの依存を<span
+                                    class="highlight-text">ここに集約</span>。FlyonUIのインスタンスをデタッチせず、そのインスタンスを<strong>ラップ(コンポーネント化)</strong>して、自社独自のコンポーネントライブラリを作成。
+                            </p>
+                        </div>
+
+                        <div class="phase-box">
+                            <span class="phase-number">2</span>
+                            <strong>02_ProductUI</strong>
+                            <p style="margin: 10px 0 0 45px;">実際の画面デザインはこちらで行う。参照するライブラリは<span
+                                    class="highlight-text">自社の01_DesignSystemファイルのみ</span>。これにより、FlyonUIライブラリへの直接アクセスを遮断し、依存関係をシンプルに。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>📊 比較:3つのアプローチ</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>アプローチ</th>
+                            <th>メリット</th>
+                            <th>デメリット</th>
+                            <th>推奨度</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>❌ 直接使用</strong><br>FlyonUIを直接ProductUIで使用</td>
+                            <td class="pro">
+                                • 最も簡単<br>
+                                • すぐ開始可能
+                            </td>
+                            <td class="con">
+                                • カスタマイズ困難<br>
+                                • 依存関係が複雑<br>
+                                • 管理が破綻しやすい
+                            </td>
+                            <td>⭐☆☆☆☆</td>
+                        </tr>
+                        <tr>
+                            <td><strong>❌ 完全コピー</strong><br>FlyonUIをコピー&デタッチ</td>
+                            <td class="pro">
+                                • 完全に自由<br>
+                                • カスタマイズ無制限
+                            </td>
+                            <td class="con">
+                                • アップデート不可<br>
+                                • コード連携メリット喪失<br>
+                                • パラメータが失われる
+                            </td>
+                            <td>⭐⭐☆☆☆</td>
+                        </tr>
+                        <tr>
+                            <td><strong>✅ ハイブリッド</strong><br>ラップ戦略で段階的に構築</td>
+                            <td class="pro">
+                                • 柔軟なカスタマイズ<br>
+                                • アップデート対応<br>
+                                • 依存関係が明確<br>
+                                • 段階的に移行可能<br>
+                                • コード連携維持
+                            </td>
+                            <td class="con">
+                                • 初期セットアップが必要<br>
+                                • 概念理解が必要
+                            </td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>🔧 ハイブリッド戦略の実装手順</h3>
+
+                <ul class="step-list">
+                    <li>
+                        <strong>初期セットアップ</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>01_DesignSystem - Masterファイルを作成</li>
+                            <li>FlyonUIライブラリを有効化</li>
+                            <li>基本スタイル(カラー、タイポグラフィ)を定義</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>ProductUIでの作業開始</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>02_ProductUIファイルを作成</li>
+                            <li>まずはFlyonUIライブラリを有効化</li>
+                            <li>FlyonUIのインスタンスを直接使用して画面設計開始</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>カスタムが必要になった時</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>01_DesignSystemで該当コンポーネントをラップ</li>
+                            <li>FlyonUIのインスタンスを配置</li>
+                            <li>それをコンポーネント化(デタッチしない!)</li>
+                            <li>必要ならバリアントプロパティを追加</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>ProductUIでの置き換え</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>02_ProductUIで自社ライブラリを有効化</li>
+                            <li>FlyonUIインスタンスを自社コンポーネントに置換</li>
+                            <li>段階的に移行していく</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>最終段階</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>02_ProductUIでFlyonUIライブラリを無効化</li>
+                            <li>自社ライブラリのみを参照</li>
+                            <li>クリーンな依存関係の完成!</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="success-box">
+                    <h4 style="margin-top: 0;">💡 重要なポイント</h4>
+                    <ul>
+                        <li><strong>段階的なラップ:</strong>最初から全てのコンポーネントをラップする必要はありません。カスタムが必要になったものから順次対応。</li>
+                        <li><strong>デタッチ禁止:</strong>カスタムが必要な場合も、デタッチではなくバリアントプロパティとして追加。</li>
+                        <li><strong>一貫性の維持:</strong>デフォルト版もカスタム版も01_DesignSystemで一元管理。</li>
+                        <li><strong>アップデート対応:</strong>FlyonUIのアップデートも自動的に反映される。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- プラグイン -->
+            <section id="plugins">
+                <h2>🔌 作業効率を10倍にする必須プラグイン</h2>
+
+                <div class="grid-3">
+                    <div class="plugin-card">
+                        <div class="plugin-name">🏷️ Rename It</div>
+                        <p><strong>用途:</strong>複数のレイヤーやコンポーネントを一括リネーム</p>
+                        <p><strong>使いどころ:</strong>命名規則を統一するとき。大量のコンポーネントを整理するとき。</p>
+                        <p style="font-size: 0.9em; color: #667eea; margin-top: 10px;">⭐ 初心者必須度: ★★★★★</p>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-name">🎨 Auto Variant Creator</div>
+                        <p><strong>用途:</strong>バリアントの自動生成</p>
+                        <p><strong>使いどころ:</strong>同じコンポーネントの異なる状態を素早く作成したいとき。</p>
+                        <p style="font-size: 0.9em; color: #667eea; margin-top: 10px;">⭐ 初心者必須度: ★★★★☆</p>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-name">🎯 Iconify</div>
+                        <p><strong>用途:</strong>10万種類以上のアイコンにアクセス</p>
+                        <p><strong>使いどころ:</strong>Material Icons、Font Awesome、Heroiconsなど、あらゆるアイコンをSVG形式で挿入。</p>
+                        <p style="font-size: 0.9em; color: #667eea; margin-top: 10px;">⭐ 初心者必須度: ★★★★★</p>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-name">🧹 Clean Document</div>
+                        <p><strong>用途:</strong>不要なリソースを削除</p>
+                        <p><strong>使いどころ:</strong>ファイルサイズが大きくなってきたとき。未使用のコンポーネントやスタイルを整理。</p>
+                        <p style="font-size: 0.9em; color: #667eea; margin-top: 10px;">⭐ 初心者必須度: ★★★☆☆</p>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-name">📊 Table Creator</div>
+                        <p><strong>用途:</strong>表形式のデータを簡単作成</p>
+                        <p><strong>使いどころ:</strong>業務アプリで頻出するデータテーブルを効率的に作成。CSVからのインポートも可能。</p>
+                        <p style="font-size: 0.9em; color: #667eea; margin-top: 10px;">⭐ 初心者必須度: ★★★★☆</p>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-name">🔍 Component Inspector</div>
+                        <p><strong>用途:</strong>未使用コンポーネントの検出</p>
+                        <p><strong>使いどころ:</strong>デザインシステムの棚卸しをするとき。不要なコンポーネントを特定。</p>
+                        <p style="font-size: 0.9em; color: #667eea; margin-top: 10px;">⭐ 初心者必須度: ★★★☆☆</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ワークフロー -->
+            <section id="workflow">
+                <h2>📋 実践ワークフロー:最初の1週間の進め方</h2>
+
+                <div class="workflow-diagram">
+                    <h3 style="margin-top: 0;">Day 1-2:環境準備とFlyonUI理解</h3>
+                    <ul>
+                        <li>FlyonUIのドキュメントを読む(https://flyonui.com/docs/)</li>
+                        <li>01_DesignSystem - Masterファイル作成</li>
+                        <li>FlyonUIライブラリを追加</li>
+                        <li>推奨プラグインをインストール</li>
+                        <li>FlyonUIのコンポーネントを一通り触ってみる</li>
+                    </ul>
+                </div>
+
+                <div class="workflow-diagram">
+                    <h3 style="margin-top: 0;">Day 3-4:基本スタイルの定義</h3>
+                    <ul>
+                        <li>01_DesignSystemでColor Stylesを定義</li>
+                        <li>Text Stylesを定義(見出し、本文、キャプションなど)</li>
+                        <li>Variablesを活用してテーマ切り替えに対応(Light/Dark)</li>
+                        <li>Spacing、Radius、Shadowの変数を定義</li>
+                    </ul>
+                </div>
+
+                <div class="workflow-diagram">
+                    <h3 style="margin-top: 0;">Day 5:ProductUIで実装開始</h3>
+                    <ul>
+                        <li>02_ProductUIファイル作成</li>
+                        <li>FlyonUIライブラリを有効化</li>
+                        <li>最初の画面をFlyonUIのコンポーネントで作成</li>
+                        <li>まずは完璧を目指さず、とにかく作ってみる</li>
+                    </ul>
+                </div>
+
+                <div class="workflow-diagram">
+                    <h3 style="margin-top: 0;">Day 6-7:カスタマイズとラップ</h3>
+                    <ul>
+                        <li>カスタムが必要なコンポーネントをリストアップ</li>
+                        <li>01_DesignSystemで1つずつラップ</li>
+                        <li>バリアントプロパティを追加</li>
+                        <li>02_ProductUIで置き換え</li>
+                        <li>命名規則を統一(Rename Itプラグイン活用)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4 style="margin-top: 0;">💡 最初の1週間で達成すべきこと</h4>
+                    <ul>
+                        <li>✅ 2ファイル構成が理解できている</li>
+                        <li>✅ FlyonUIのコンポーネントを使って1画面作れる</li>
+                        <li>✅ 最低1つのコンポーネントをラップできた</li>
+                        <li>✅ 命名規則が統一されている</li>
+                        <li>✅ チームメンバーと共有できている</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- FigmaMCP活用 -->
+            <section id="figma-mcp">
+                <h2>🤖 FigmaMCPでAIレビューを活用する</h2>
+
+                <div class="info-box">
+                    <h3 style="margin-top: 0;">🔌 FigmaMCPとは?</h3>
+                    <p>FigmaMCPは、Figmaデスクトップアプリと連携して、選択したコンポーネントの情報をAI(Claude)が直接読み取れるようにするツールです。これにより、命名規則やコンポーネント構造を自動的にチェックできます。
+                    </p>
+                    <p style="margin-top: 10px;"><strong>セットアップガイド:</strong> <a
+                            href="https://help.figma.com/hc/ja/articles/32132100833559-Dev-Mode-MCP%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E5%88%A9%E7%94%A8%E3%82%AC%E3%82%A4%E3%83%89"
+                            target="_blank" style="color: #667eea;">FigmaMCP 利用ガイド(公式)</a></p>
+                    <p style="font-size: 0.9em; color: #718096; margin-top: 10px;">※ Figmaデスクトップアプリのインストールが必要です</p>
+                </div>
+
+                <h3>📋 使い方の流れ</h3>
+                <div class="grid-2" style="margin-bottom: 30px;">
+                    <div class="card">
+                        <h4>1. Figmaで選択</h4>
+                        <p>レビューしたいコンポーネントやフレームをFigmaデスクトップアプリで選択します。</p>
+                    </div>
+                    <div class="card">
+                        <h4>2. プロンプトをコピー</h4>
+                        <p>以下のプロンプトをコピーして、ClaudeDesktopやCursorに貼り付けます。</p>
+                    </div>
+                    <div class="card">
+                        <h4>3. AIが自動分析</h4>
+                        <p>ClaudeがFigmaMCPを通じてコンポーネント情報を読み取り、自動的に分析します。</p>
+                    </div>
+                    <div class="card">
+                        <h4>4. 改善提案を受け取る</h4>
+                        <p>命名規則やベストプラクティスに基づいた具体的な改善提案が得られます。</p>
+                    </div>
+                </div>
+
+                <h3>🎯 プロンプト集</h3>
+
+                <!-- 包括的レビュープロンプト -->
+                <div class="strategy-box">
+                    <h4>💎 包括的コンポーネントレビュー</h4>
+                    <p style="margin-bottom: 15px; color: #4a5568;">
+                        コンポーネント全体を徹底的にチェックする包括的なプロンプトです。初めてレビューする際や、重要なコンポーネントの品質を確認したい時に使用します。</p>
+
+                    <div class="prompt-box">
+                        <button class="copy-button" onclick="copyToClipboard('prompt1')">📋 コピー</button>
+                        <pre id="prompt1">現在Figmaで選択しているコンポーネントを、以下の観点で包括的にレビューしてください:
+
+【チェック項目】
+
+1. **命名規則の確認**
+   - スラッシュ(/)区切りで階層構造になっているか
+   - Category/Type/Size/Stateのパターンに従っているか
+   - 英語で統一されているか
+   - 略語を使用していないか
+
+2. **コンポーネント構造**
+   - Auto Layoutが適切に設定されているか
+   - Padding、Gap、Resizingの設定は適切か
+   - 不要なネストがないか
+   - レイヤー名は分かりやすいか
+
+3. **バリアント設計**
+   - プロパティ名は適切か(State, Size, Typeなど)
+   - バリアントの組み合わせに漏れや重複はないか
+   - Boolean型プロパティを活用できているか
+
+4. **スタイルの一貫性**
+   - Color StylesやText Stylesを使用しているか
+   - ハードコーディングされた値はないか
+   - Variablesを活用しているか
+
+5. **FlyonUIとの整合性**
+   - FlyonUIのコンポーネントを適切にラップしているか
+   - デタッチせずにインスタンスのまま使用しているか
+
+【出力形式】
+- ✅ 良い点
+- ⚠️ 改善が必要な点
+- 💡 具体的な改善提案(ステップバイステップで)
+- 📝 推奨される命名例
+
+最後に、このコンポーネントの品質スコア(0-100)と総合評価をお願いします。</pre>
+                    </div>
+                </div>
+
+                <!-- 命名規則特化プロンプト -->
+                <div class="strategy-box">
+                    <h4>🏷️ 命名規則チェック(クイック版)</h4>
+                    <p style="margin-bottom: 15px; color: #4a5568;">
+                        命名規則だけを素早くチェックしたい時に使用します。大量のコンポーネントを効率的にレビューする際に便利です。</p>
+
+                    <div class="prompt-box">
+                        <button class="copy-button" onclick="copyToClipboard('prompt2')">📋 コピー</button>
+                        <pre id="prompt2">選択中のコンポーネント/レイヤーの命名をチェックしてください:
+
+【チェックポイント】
+✓ スラッシュ(/)区切りの階層構造
+✓ Category/Type/Size/Stateのパターン
+✓ 英語表記の統一
+✓ 略語の使用禁止
+✓ 見た目ではなく機能で命名
+
+【現在の命名】
+→ (Claudeが自動で読み取ります)
+
+【改善案】
+もし命名に問題があれば、以下の形式で提案してください:
+- ❌ 現在: [現在の名前]
+- ✅ 推奨: [改善後の名前]
+- 理由: [なぜその命名が良いのか]
+
+問題なければ「✅ 命名規則に準拠しています」と返答してください。</pre>
+                    </div>
+                </div>
+
+                <!-- Auto Layout設定チェック -->
+                <div class="strategy-box">
+                    <h4>📐 Auto Layout構造チェック</h4>
+                    <p style="margin-bottom: 15px; color: #4a5568;">Auto Layoutの設定を詳しくチェックし、レスポンシブ性と保守性を評価します。</p>
+
+                    <div class="prompt-box">
+                        <button class="copy-button" onclick="copyToClipboard('prompt3')">📋 コピー</button>
+                        <pre id="prompt3">選択中のコンポーネントのAuto Layout設定をレビューしてください:
+
+【確認項目】
+
+1. **Auto Layoutの適用状況**
+   - 適用されているか
+   - Direction(横/縦)は適切か
+   - ネストしたAuto Layoutが適切に設定されているか
+
+2. **スペーシング**
+   - Paddingの値は適切か
+   - Gapの設定は統一されているか
+   - マジックナンバーではなく変数を使用しているか
+
+3. **Resizing設定**
+   - Hug/Fixed/Fillの選択は適切か
+   - Min/Max Widthが設定されているか
+   - レスポンシブに対応できる構造か
+
+4. **子要素の配置**
+   - Alignment(揃え)は適切か
+   - 不要なAbsolute positioningはないか
+
+【出力】
+- 現在の設定の要約
+- ⚠️ 問題点
+- 💡 最適化の提案
+- 🎯 推奨設定値
+
+コンテンツが変化しても破綻しない構造になっているかを重点的に評価してください。</pre>
+                    </div>
+                </div>
+
+                <!-- バリアント構造チェック -->
+                <div class="strategy-box">
+                    <h4>🎨 バリアント構造チェック</h4>
+                    <p style="margin-bottom: 15px; color: #4a5568;">バリアントを持つコンポーネントの設計品質を評価します。</p>
+
+                    <div class="prompt-box">
+                        <button class="copy-button" onclick="copyToClipboard('prompt4')">📋 コピー</button>
+                        <pre id="prompt4">選択中のコンポーネントのバリアント構造を分析してください:
+
+【分析項目】
+
+1. **プロパティ設計**
+   - プロパティ名は適切か(State, Size, Type, Icon など)
+   - Boolean型を活用できているか
+   - Instance Swapプロパティは適切に使われているか
+
+2. **バリアントの完全性**
+   - 必要なバリアントの組み合わせは全て揃っているか
+   - 不要な重複バリアントはないか
+   - 状態遷移(Default → Hover → Active など)は論理的か
+
+3. **メンテナンス性**
+   - 新しいバリアントを追加しやすい構造か
+   - プロパティ数は適切か(多すぎないか)
+   - 命名規則は統一されているか
+
+4. **実装連携**
+   - 開発者が使いやすい構造か
+   - propsとして渡しやすいプロパティ名か
+
+【出力形式】
+📊 現在のバリアント構成
+- プロパティ一覧
+- バリアント数
+
+⚠️ 問題点
+- 不足しているバリアント
+- 不要なバリアント
+- プロパティ設計の課題
+
+💡 改善提案
+- 追加すべきバリアント
+- 統合すべきバリアント
+- プロパティの再設計案
+
+最後に「拡張性スコア」(0-100)を評価してください。</pre>
+                    </div>
+                </div>
+
+                <!-- FlyonUI統合チェック -->
+                <div class="strategy-box">
+                    <h4>🔄 FlyonUI統合チェック</h4>
+                    <p style="margin-bottom: 15px; color: #4a5568;">
+                        FlyonUIのコンポーネントを適切に活用できているかをチェックします。ハイブリッド戦略に沿った運用ができているかを確認します。</p>
+
+                    <div class="prompt-box">
+                        <button class="copy-button" onclick="copyToClipboard('prompt5')">📋 コピー</button>
+                        <pre id="prompt5">選択中のコンポーネントについて、FlyonUIとの統合状況をチェックしてください:
+
+【確認ポイント】
+
+1. **ラップ戦略の実装**
+   - FlyonUIのインスタンスをデタッチせずに使用しているか
+   - 適切にコンポーネント化(ラップ)されているか
+   - カスタマイズはバリアントプロパティで実現しているか
+
+2. **依存関係の管理**
+   - このコンポーネントはどのファイルに配置すべきか
+     * 01_DesignSystem - Master
+     * 02_ProductUI
+   - ライブラリの参照は適切か
+
+3. **カスタマイズ方法**
+   - デタッチが必要な箇所はあるか(ある場合は要注意)
+   - バリアントで対応できない部分はあるか
+   - FlyonUIの更新に追従できる構造か
+
+4. **代替案の検討**
+   - FlyonUIのコンポーネントを使うべきか
+   - ゼロから作るべきか
+   - ラップするべきか
+
+【出力】
+✅ 適切な点
+⚠️ リスクがある点
+💡 推奨される対応
+🎯 最適なファイル配置
+
+ハイブリッド戦略の観点から、長期的なメンテナンス性を重視して評価してください。</pre>
+                    </div>
+                </div>
+
+                <div class="beginner-tip">
+                    <h4 style="margin-top: 0;">💡 効果的な使い方のコツ</h4>
+                    <ul>
+                        <li><strong>定期的なレビュー:</strong> 新しいコンポーネントを作成したら、すぐにレビューする習慣をつけましょう。</li>
+                        <li><strong>スラッシュコマンド化:</strong> ClaudeDesktopやCursorのスラッシュコマンドに登録すると、さらに効率的です。</li>
+                        <li><strong>チームで共有:</strong> これらのプロンプトをチーム全体で共有し、品質基準を統一しましょう。</li>
+                        <li><strong>段階的改善:</strong> 全ての指摘を一度に修正しようとせず、優先度をつけて対応しましょう。</li>
+                        <li><strong>学習ツールとして:</strong> AIの指摘を読むことで、ベストプラクティスを学ぶことができます。</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4 style="margin-top: 0;">🔧 トラブルシューティング</h4>
+                    <p><strong>Q: Claudeがコンポーネント情報を読み取れない</strong><br>
+                        A: FigmaMCPが正しくセットアップされているか、Figmaデスクトップアプリでコンポーネントが選択されているかを確認してください。</p>
+
+                    <p style="margin-top: 10px;"><strong>Q: レビュー結果が表示されない</strong><br>
+                        A: プロンプト全体がコピーされているか、ClaudeのコンテキストウィンドウがFigmaに接続されているかを確認してください。</p>
+
+                    <p style="margin-top: 10px;"><strong>Q: 改善提案が具体的でない</strong><br>
+                        A: プロンプトに「具体的な例を示して」「ステップバイステップで」などの指示を追加してみてください。</p>
+                </div>
+            </section>
+
+            <!-- 命名規則 -->
+            <section id="naming">
+                <h2>🏷️ 命名規則:迷わないための黄金ルール</h2>
+
+                <h3>基本パターン</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>要素</th>
+                            <th>命名パターン</th>
+                            <th>例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>コンポーネント</td>
+                            <td>Category/Type/Size/State</td>
+                            <td>Button/Primary/Large/Default</td>
+                        </tr>
+                        <tr>
+                            <td>バリアント</td>
+                            <td>Property=Value</td>
+                            <td>State=Hover, Size=Medium</td>
+                        </tr>
+                        <tr>
+                            <td>変数</td>
+                            <td>category.type.name</td>
+                            <td>color.primary.500</td>
+                        </tr>
+                        <tr>
+                            <td>ページ</td>
+                            <td>番号_名前_状態</td>
+                            <td>01_Dashboard_Final</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>FlyonUI対応の命名例</h3>
+                <div class="file-structure">
+                    <span class="folder">01_DesignSystem - Master/</span>
+                    ├── <span class="file">📄 Foundations</span>
+                    │ ├── <span class="component">Color Styles (Primary, Secondary, etc.)</span>
+                    │ ├── <span class="component">Text Styles (Heading/H1, Body/Regular, etc.)</span>
+                    │ └── <span class="component">Variables (color.primary.500, spacing.md, etc.)</span>
+                    │
+                    ├── <span class="file">📄 Atoms</span>
+                    │ ├── <span class="component">Button/Primary/Large/Default</span>
+                    │ ├── <span class="component">Button/Primary/Large/Hover</span>
+                    │ ├── <span class="component">Input/Text/Medium/Default</span>
+                    │ └── <span class="component">Badge/Status/Success</span>
+                    │
+                    ├── <span class="file">📄 Molecules</span>
+                    │ ├── <span class="component">Form-Field/Text/Default</span>
+                    │ ├── <span class="component">Card/Product/Horizontal</span>
+                    │ └── <span class="component">Nav-Item/Default/Active</span>
+                    │
+                    └── <span class="file">📄 Organisms</span>
+                    ├── <span class="component">Header/Dashboard/Desktop</span>
+                    ├── <span class="component">Sidebar/Navigation/Expanded</span>
+                    └── <span class="component">Table/Data/Sortable</span>
+
+                    <span class="folder">02_ProductUI/</span>
+                    ├── <span class="file">📄 01_Dashboard</span>
+                    ├── <span class="file">📄 02_User-Management</span>
+                    ├── <span class="file">📄 03_Reports</span>
+                    └── <span class="file">📄 04_Settings</span>
+                </div>
+
+                <div class="warning-box">
+                    <h4 style="margin-top: 0;">⚠️ よくある命名の失敗</h4>
+                    <ul>
+                        <li>❌ <code>btn-primary-lg</code> → 略語は避ける</li>
+                        <li>❌ <code>Button_Primary_Large</code> → アンダースコアではなくスラッシュ</li>
+                        <li>❌ <code>ボタン/プライマリ/大</code> → 英語で統一</li>
+                        <li>❌ <code>Button/blue/big</code> → 色や見た目ではなく機能で命名</li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>✅ 正しい命名:</strong></p>
+                    <ul>
+                        <li>✅ <code>Button/Primary/Large/Default</code></li>
+                        <li>✅ <code>Input/Text/Medium/Disabled</code></li>
+                        <li>✅ <code>Card/Product/Horizontal/Hover</code></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Atomic Design階層の完全ガイド -->
+            <section id="component-structure">
+                <h2>🏗️ Atomic Design階層の完全ガイド</h2>
+
+                <div class="beginner-tip">
+                    <h3 style="margin-top: 0;">👁️ このセクションについて</h3>
+                    <p>Figmaでの大規模アプリ設計における<strong>Files → Pages → Templates → Organisms → Molecules → Atoms</strong>の階層構造を、実際のダッシュボード画面を例に視覚的かつインタラクティブに学べるガイドです。</p>
+                    <p>このセクションでは、<a href="#basics" style="color: #667eea; text-decoration: underline;">基本原則</a>で学んだ「4. アトミックデザインの考え方」と、<a href="#hybrid" style="color: #667eea; text-decoration: underline;">ハイブリッド戦略</a>での2ファイル構成を、実践的な例で理解できます。</p>
+                    <p><strong>📍 使い方:</strong></p>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>ホバー:</strong> 各要素にマウスを重ねると、関連するコンポーネントが<span style="background: #fef3c7; padding: 2px 6px; border-radius: 3px;">黄色</span>でハイライトされます</li>
+                        <li><strong>クリック:</strong> 要素をクリックすると、<span style="background: #fbbf24; padding: 2px 6px; border-radius: 3px;">濃い黄色</span>で固定ハイライトされ、詳細を確認できます</li>
+                        <li><strong>階層理解:</strong> 下から上へ（Atoms → Files）の構築順序と、各レベルの役割・依存関係を理解できます</li>
+                    </ul>
+                </div>
+
+                <!-- Atomic Design階層の概要 -->
+                <div class="info-box" style="margin: 30px 0;">
+                    <h3>🎯 Atomic Designとは</h3>
+                    <p>Atomic Designは、UIを化学の原子・分子の概念に基づいて階層的に構築する設計手法です。最小単位（Atoms）から段階的に組み合わせることで、一貫性があり保守しやすいデザインシステムを構築できます。</p>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                        <h4 style="margin-bottom: 15px;">📚 階層構造（下から上へ構築）</h4>
+                        <ol style="line-height: 2;">
+                            <li><strong>⚛️ Atoms（原子）</strong> - 最小単位の要素（ボタン、アイコン、テキストなど）</li>
+                            <li><strong>🔹 Molecules（分子）</strong> - Atomsの組み合わせ（検索フォーム、メニュー項目など）</li>
+                            <li><strong>🔷 Organisms（有機体）</strong> - MoleculesとAtomsで構成される複雑な部品（ヘッダー、サイドバーなど）</li>
+                            <li><strong>📋 Templates</strong> - Organismsを配置したレイアウト（ワイヤーフレーム）</li>
+                            <li><strong>📄 Pages</strong> - 実際のコンテンツを含む完成画面</li>
+                            <li><strong>📁 Files</strong> - Figmaでの管理単位（DesignSystem, ProductUI）</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Figma階層の視覚的表現 -->
+                <h3 style="margin-top: 40px; margin-bottom: 20px;">📐 Figmaでの階層構造</h3>
+                <p style="margin-bottom: 30px;">以下は、Figmaアプリを擬似的に再現した階層表示です。各レベルをクリックして展開すると、そのレベルのコンポーネント構成とビジュアルプレビューが表示されます。</p>
+
+                <div class="figma-hierarchy-accordion">
+                    
+                    <!-- Pages Level - ページ全体 -->
+                    <div class="figma-level-item" data-level="pages">
+                        <div class="figma-level-header" onclick="toggleLevel('pages')">
+                            <span class="expand-icon">▶</span>
+                            <span class="level-icon">📄</span>
+                            <span class="level-title">Pages - ページ全体</span>
+                            <span class="level-badge">Template</span>
+                        </div>
+                        <div class="figma-level-content" id="level-pages">
+                            <div class="figma-workspace">
+                                <!-- 左側: Figmaレイヤーパネル -->
+                                <div class="figma-layers-panel">
+                                    <div class="figma-layers-header">レイヤー</div>
+                                    <div class="figma-layer-tree">
+                                        <div class="figma-layer" data-component="page">
+                                            <span class="layer-icon">📄</span>
+                                            <span class="layer-name">Page/Dashboard/Desktop</span>
+                                        </div>
+                                        <div class="figma-layer-children">
+                                            <div class="figma-layer child" data-component="header">
+                                                <span class="layer-icon">🔷</span>
+                                                <span class="layer-name">Header</span>
+                                                <span class="layer-instance">Instance</span>
+                                            </div>
+                                            <div class="figma-layer child" data-component="sidebar">
+                                                <span class="layer-icon">🔷</span>
+                                                <span class="layer-name">Sidebar</span>
+                                                <span class="layer-instance">Instance</span>
+                                            </div>
+                                            <div class="figma-layer child" data-component="content">
+                                                <span class="layer-icon">📋</span>
+                                                <span class="layer-name">Main Content</span>
+                                                <span class="layer-instance">Instance</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 右側: ビジュアルプレビュー -->
+                                <div class="figma-canvas-panel">
+                                    <div class="figma-canvas-header">
+                                        <span>Page/Dashboard/Desktop</span>
+                                        <span class="canvas-zoom">100%</span>
+                                    </div>
+                                    <div class="figma-canvas">
+                                        <!-- ページ全体のプレビュー（縮小版） -->
+                                        <div class="figma-frame page-frame" data-component="page">
+                                            <div class="frame-label">Page</div>
+                                            <div class="figma-page-preview">
+                                                <div class="preview-header" data-component="header">Header</div>
+                                                <div class="preview-body">
+                                                    <div class="preview-sidebar" data-component="sidebar">Sidebar</div>
+                                                    <div class="preview-content" data-component="content">Main Content</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Figmaプロパティパネル風 -->
+                            <div class="figma-properties-panel">
+                                <div class="prop-section">
+                                    <div class="prop-title">📐 Frame</div>
+                                    <div class="prop-content">1440 × 900</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">🎨 Auto Layout</div>
+                                    <div class="prop-content">Vertical, Gap: 0</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">📝 説明</div>
+                                    <div class="prop-content">完成した画面。Header、Sidebar、Main Contentの3つのOrganismsで構成されています。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- Organisms Level - 機能ブロック -->
+                    <div class="figma-level-item" data-level="organisms">
+                        <div class="figma-level-header" onclick="toggleLevel('organisms')">
+                            <span class="expand-icon">▶</span>
+                            <span class="level-icon">🔷</span>
+                            <span class="level-title">Organisms - 機能ブロック</span>
+                            <span class="level-badge">Component</span>
+                        </div>
+                        <div class="figma-level-content" id="level-organisms" style="display: none;">
+                            <div class="figma-workspace">
+                                <!-- 左側: Figmaレイヤーパネル -->
+                                <div class="figma-layers-panel">
+                                    <div class="figma-layers-header">Assets → Organisms</div>
+                                    <div class="figma-layer-tree">
+                                        <div class="figma-layer component" data-component="header">
+                                            <span class="layer-icon">🔷</span>
+                                            <span class="layer-name">Header/Dashboard/Desktop</span>
+                                        </div>
+                                        <div class="figma-layer component" data-component="sidebar">
+                                            <span class="layer-icon">🔷</span>
+                                            <span class="layer-name">Sidebar/Navigation/Expanded</span>
+                                        </div>
+                                        <div class="figma-layer component" data-component="stats-section">
+                                            <span class="layer-icon">🔷</span>
+                                            <span class="layer-name">Stats-Section/Dashboard/Grid</span>
+                                        </div>
+                                        <div class="figma-layer component" data-component="table">
+                                            <span class="layer-icon">🔷</span>
+                                            <span class="layer-name">Table/Data/Default/Sortable</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 右側: ビジュアルプレビュー -->
+                                <div class="figma-canvas-panel">
+                                    <div class="figma-canvas-header">
+                                        <span>Organisms Components</span>
+                                        <span class="canvas-zoom">75%</span>
+                                    </div>
+                                    <div class="figma-canvas organisms-canvas">
+                                        <!-- Header Organism -->
+                                        <div class="figma-component-preview" data-component="header">
+                                            <div class="component-label">Header</div>
+                                            <div class="demo-header no-hover">
+                                                <div class="demo-logo">🚀</div>
+                                                <div class="demo-nav">
+                                                    <div class="demo-nav-item">ダッシュボード</div>
+                                                    <div class="demo-nav-item">分析</div>
+                                                    <div class="demo-nav-item">レポート</div>
+                                                </div>
+                                                <div class="demo-user-menu">
+                                                    <div class="demo-avatar">👤</div>
+                                                    <div>▼</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Sidebar Organism -->
+                                        <div class="figma-component-preview" data-component="sidebar">
+                                            <div class="component-label">Sidebar</div>
+                                            <div class="demo-sidebar no-hover">
+                                                <div class="demo-menu-item active">
+                                                    <span>📊</span><span>概要</span>
+                                                </div>
+                                                <div class="demo-menu-item">
+                                                    <span>📈</span><span>統計</span>
+                                                </div>
+                                                <div class="demo-menu-item">
+                                                    <span>⚙️</span><span>設定</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Stats Section Organism -->
+                                        <div class="figma-component-preview" data-component="stats-section">
+                                            <div class="component-label">Stats-Section</div>
+                                            <div class="demo-stats-section no-hover">
+                                                <div class="demo-stat-card">
+                                                    <span class="stat-icon">💰</span>
+                                                    <span class="stat-title">売上</span>
+                                                    <span class="stat-value">¥1,234,567</span>
+                                                </div>
+                                                <div class="demo-stat-card">
+                                                    <span class="stat-icon">👥</span>
+                                                    <span class="stat-title">ユーザー</span>
+                                                    <span class="stat-value">12,345</span>
+                                                </div>
+                                                <div class="demo-stat-card">
+                                                    <span class="stat-icon">📦</span>
+                                                    <span class="stat-title">注文</span>
+                                                    <span class="stat-value">5,678</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Figmaプロパティパネル風 -->
+                            <div class="figma-properties-panel">
+                                <div class="prop-section">
+                                    <div class="prop-title">🎨 Component</div>
+                                    <div class="prop-content">4 Organisms</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">🔗 Instances</div>
+                                    <div class="prop-content">Header (3), Sidebar (3), Stats-Section (1), Table (1)</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">📝 説明</div>
+                                    <div class="prop-content">MoleculesとAtomsで構成される機能ブロック。各Organismは独立して動作できます。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Molecules Level - 機能グループ -->
+                    <div class="figma-level-item" data-level="molecules">
+                        <div class="figma-level-header" onclick="toggleLevel('molecules')">
+                            <span class="expand-icon">▶</span>
+                            <span class="level-icon">🔹</span>
+                            <span class="level-title">Molecules - 機能グループ</span>
+                            <span class="level-badge">Component</span>
+                        </div>
+                        <div class="figma-level-content" id="level-molecules" style="display: none;">
+                            <div class="figma-workspace">
+                                <!-- 左側: Figmaレイヤーパネル -->
+                                <div class="figma-layers-panel">
+                                    <div class="figma-layers-header">Assets → Molecules</div>
+                                    <div class="figma-layer-tree">
+                                        <div class="figma-layer component" data-component="navigation">
+                                            <span class="layer-icon">🔹</span>
+                                            <span class="layer-name">Navigation/Primary/Horizontal</span>
+                                        </div>
+                                        <div class="figma-layer component" data-component="user-menu">
+                                            <span class="layer-icon">🔹</span>
+                                            <span class="layer-name">User-Menu/Dropdown/Default</span>
+                                        </div>
+                                        <div class="figma-layer component" data-component="menu-item-1">
+                                            <span class="layer-icon">🔹</span>
+                                            <span class="layer-name">Menu-Item/Sidebar/Default</span>
+                                        </div>
+                                        <div class="figma-layer component" data-component="stat-card-1">
+                                            <span class="layer-icon">🔹</span>
+                                            <span class="layer-name">Card/Stat/Vertical/Default</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 右側: ビジュアルプレビュー -->
+                                <div class="figma-canvas-panel">
+                                    <div class="figma-canvas-header">
+                                        <span>Molecules Components</span>
+                                        <span class="canvas-zoom">100%</span>
+                                    </div>
+                                    <div class="figma-canvas molecules-canvas">
+                                        <!-- Navigation Molecule -->
+                                        <div class="figma-component-preview" data-component="navigation">
+                                            <div class="component-label">Navigation</div>
+                                            <div class="demo-nav no-hover">
+                                                <div class="demo-nav-item">ダッシュボード</div>
+                                                <div class="demo-nav-item">分析</div>
+                                                <div class="demo-nav-item">レポート</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- User Menu Molecule -->
+                                        <div class="figma-component-preview" data-component="user-menu">
+                                            <div class="component-label">User-Menu</div>
+                                            <div class="demo-user-menu no-hover">
+                                                <div class="demo-avatar">👤</div>
+                                                <div>▼</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Menu Item Molecule -->
+                                        <div class="figma-component-preview" data-component="menu-item-1">
+                                            <div class="component-label">Menu-Item</div>
+                                            <div class="demo-menu-item no-hover active">
+                                                <span>📊</span><span>概要</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Stat Card Molecule -->
+                                        <div class="figma-component-preview" data-component="stat-card-1">
+                                            <div class="component-label">Stat-Card</div>
+                                            <div class="demo-stat-card no-hover">
+                                                <span class="stat-icon">💰</span>
+                                                <span class="stat-title">売上</span>
+                                                <span class="stat-value">¥1,234,567</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Figmaプロパティパネル風 -->
+                            <div class="figma-properties-panel">
+                                <div class="prop-section">
+                                    <div class="prop-title">🎨 Component</div>
+                                    <div class="prop-content">4 Molecules shown (全8種類)</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">⚙️ Properties</div>
+                                    <div class="prop-content">State, Size, Orientation など</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">📝 説明</div>
+                                    <div class="prop-content">Atomsを組み合わせた小さな機能単位。Instance Swapで柔軟に切り替え可能。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atoms Level - 最小単位 -->
+                    <div class="figma-level-item" data-level="atoms">
+                        <div class="figma-level-header" onclick="toggleLevel('atoms')">
+                            <span class="expand-icon">▶</span>
+                            <span class="level-icon">⚛️</span>
+                            <span class="level-title">Atoms - 最小単位</span>
+                            <span class="level-badge">Component</span>
+                        </div>
+                        <div class="figma-level-content" id="level-atoms" style="display: none;">
+                            <div class="figma-workspace">
+                                <!-- 左側: Figmaレイヤーパネル -->
+                                <div class="figma-layers-panel">
+                                    <div class="figma-layers-header">Assets → Atoms</div>
+                                    <div class="figma-layer-tree">
+                                        <div class="figma-layer component" data-component="logo">
+                                            <span class="layer-icon">⚛️</span>
+                                            <span class="layer-name">Logo/Brand/Default</span>
+                                        </div>
+                                        <div class="figma-layer component" data-component="nav-item-1">
+                                            <span class="layer-icon">⚛️</span>
+                                            <span class="layer-name">Nav-Item/Primary/Default</span>
+                                        </div>
+                                        <div class="figma-layer component" data-component="avatar">
+                                            <span class="layer-icon">⚛️</span>
+                                            <span class="layer-name">Avatar/User/Small/Default</span>
+                                        </div>
+                                        <div class="figma-layer component">
+                                            <span class="layer-icon">⚛️</span>
+                                            <span class="layer-name">Icon/Chart/Default/Medium</span>
+                                        </div>
+                                        <div class="figma-layer component">
+                                            <span class="layer-icon">⚛️</span>
+                                            <span class="layer-name">Text/Body/Regular/Small</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 右側: ビジュアルプレビュー -->
+                                <div class="figma-canvas-panel">
+                                    <div class="figma-canvas-header">
+                                        <span>Atoms Components</span>
+                                        <span class="canvas-zoom">125%</span>
+                                    </div>
+                                    <div class="figma-canvas atoms-canvas">
+                                        <!-- Logo Atom -->
+                                        <div class="figma-component-preview" data-component="logo">
+                                            <div class="component-label">Logo</div>
+                                            <div class="demo-logo no-hover">🚀</div>
+                                        </div>
+                                        
+                                        <!-- Nav Item Atom -->
+                                        <div class="figma-component-preview" data-component="nav-item-1">
+                                            <div class="component-label">Nav-Item</div>
+                                            <div class="demo-nav-item no-hover">ダッシュボード</div>
+                                        </div>
+                                        
+                                        <!-- Avatar Atom -->
+                                        <div class="figma-component-preview" data-component="avatar">
+                                            <div class="component-label">Avatar</div>
+                                            <div class="demo-avatar no-hover">👤</div>
+                                        </div>
+                                        
+                                        <!-- Icon Atom -->
+                                        <div class="figma-component-preview">
+                                            <div class="component-label">Icon</div>
+                                            <div class="demo-icon no-hover">📊</div>
+                                        </div>
+                                        
+                                        <!-- Text Atom -->
+                                        <div class="figma-component-preview">
+                                            <div class="component-label">Text</div>
+                                            <div class="demo-text no-hover">概要</div>
+                                        </div>
+                                        
+                                        <!-- Variant hint -->
+                                        <div class="variant-hint">
+                                            <small>💡 各Atomには複数のバリアント（State, Size, Type）があります</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Figmaプロパティパネル風 -->
+                            <div class="figma-properties-panel">
+                                <div class="prop-section">
+                                    <div class="prop-title">🎨 Component</div>
+                                    <div class="prop-content">5 Atoms shown (全20+種類)</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">🎭 Variants</div>
+                                    <div class="prop-content">State: Default/Hover/Active | Size: S/M/L | Type: Primary/Secondary</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">🔗 FlyonUI</div>
+                                    <div class="prop-content">FlyonUIインスタンス → コンポーネント化（ラップ）</div>
+                                </div>
+                                <div class="prop-section">
+                                    <div class="prop-title">📝 説明</div>
+                                    <div class="prop-content">最小単位の要素。これ以上分解できません。バリアントプロパティで状態を管理します。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- インタラクティブなデモセクション -->
+                <h3 id="interactive-demo-title" style="margin-top: 50px; margin-bottom: 20px;">🎮 インタラクティブデモ</h3>
+                <p style="margin-bottom: 30px;">実際のダッシュボード画面で、各階層がどのように連携しているかを確認できます。</p>
+
+                <div class="interactive-demo" role="region" aria-labelledby="interactive-demo-title">
+                    <div class="demo-container">
+                        <!-- 左側: UIプレビュー -->
+                        <div class="ui-preview" role="img" aria-label="ダッシュボードUIのプレビュー">
+                            <h3>UIプレビュー</h3>
+                            <div class="preview-wrapper">
+                                <!-- Dashboard Page (Template) -->
+                                <div class="demo-page" data-component="page">
+
+                                    <!-- Header (Organism) -->
+                                    <div class="demo-header" data-component="header">
+                                        <!-- Logo (Atom) -->
+                                        <div class="demo-logo" data-component="logo">
+                                            <div class="logo-icon">🚀</div>
+                                        </div>
+
+                                        <!-- Navigation (Molecule) -->
+                                        <div class="demo-nav" data-component="navigation">
+                                            <div class="demo-nav-item" data-component="nav-item-1">ダッシュボード</div>
+                                            <div class="demo-nav-item" data-component="nav-item-2">分析</div>
+                                            <div class="demo-nav-item" data-component="nav-item-3">レポート</div>
+                                        </div>
+
+                                        <!-- User Menu (Molecule) -->
+                                        <div class="demo-user-menu" data-component="user-menu">
+                                            <div class="demo-avatar" data-component="avatar">👤</div>
+                                            <div class="demo-dropdown-icon" data-component="dropdown-icon">▼</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Main Content Area -->
+                                    <div class="demo-main">
+                                        <!-- Sidebar (Organism) -->
+                                        <div class="demo-sidebar" data-component="sidebar">
+                                            <div class="demo-menu-item" data-component="menu-item-1">
+                                                <span class="demo-icon" data-component="menu-icon-1">📊</span>
+                                                <span class="demo-label" data-component="menu-label-1">概要</span>
+                                            </div>
+                                            <div class="demo-menu-item" data-component="menu-item-2">
+                                                <span class="demo-icon" data-component="menu-icon-2">📈</span>
+                                                <span class="demo-label" data-component="menu-label-2">統計</span>
+                                            </div>
+                                            <div class="demo-menu-item" data-component="menu-item-3">
+                                                <span class="demo-icon" data-component="menu-icon-3">⚙️</span>
+                                                <span class="demo-label" data-component="menu-label-3">設定</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Content (Template) -->
+                                        <div class="demo-content" data-component="content">
+                                            <!-- Stats Cards (Organism) -->
+                                            <div class="demo-stats-section" data-component="stats-section">
+                                                <!-- Card 1 (Molecule) -->
+                                                <div class="demo-stat-card" data-component="stat-card-1">
+                                                    <div class="stat-icon" data-component="stat-icon-1">💰</div>
+                                                    <div class="stat-title" data-component="stat-title-1">売上</div>
+                                                    <div class="stat-value" data-component="stat-value-1">¥1,234,567</div>
+                                                </div>
+
+                                                <!-- Card 2 (Molecule) -->
+                                                <div class="demo-stat-card" data-component="stat-card-2">
+                                                    <div class="stat-icon" data-component="stat-icon-2">👥</div>
+                                                    <div class="stat-title" data-component="stat-title-2">ユーザー</div>
+                                                    <div class="stat-value" data-component="stat-value-2">12,345</div>
+                                                </div>
+
+                                                <!-- Card 3 (Molecule) -->
+                                                <div class="demo-stat-card" data-component="stat-card-3">
+                                                    <div class="stat-icon" data-component="stat-icon-3">📦</div>
+                                                    <div class="stat-title" data-component="stat-title-3">注文</div>
+                                                    <div class="stat-value" data-component="stat-value-3">5,678</div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Data Table (Organism) -->
+                                            <div class="demo-table" data-component="table">
+                                                <div class="demo-table-header" data-component="table-header">
+                                                    <div class="demo-table-cell header" data-component="header-cell-1">商品名</div>
+                                                    <div class="demo-table-cell header" data-component="header-cell-2">価格</div>
+                                                    <div class="demo-table-cell header" data-component="header-cell-3">在庫</div>
+                                                </div>
+                                                <div class="demo-table-row" data-component="table-row-1">
+                                                    <div class="demo-table-cell" data-component="cell-1-1">商品A</div>
+                                                    <div class="demo-table-cell" data-component="cell-1-2">¥1,200</div>
+                                                    <div class="demo-table-cell" data-component="cell-1-3">45</div>
+                                                </div>
+                                                <div class="demo-table-row" data-component="table-row-2">
+                                                    <div class="demo-table-cell" data-component="cell-2-1">商品B</div>
+                                                    <div class="demo-table-cell" data-component="cell-2-2">¥2,400</div>
+                                                    <div class="demo-table-cell" data-component="cell-2-3">23</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 右側: コンポーネントツリー -->
+                        <div class="component-tree">
+                            <h3>コンポーネントツリー</h3>
+                            <div class="tree-wrapper">
+                                <div class="tree-node page-level" data-component="page">
+                                    <span class="tree-icon">📄</span>
+                                    <span class="tree-label">Page: Dashboard</span>
+                                    <span class="tree-badge template">Template</span>
+                                    <span class="component-name">Page/Dashboard/Desktop</span>
+
+                                    <div class="tree-children">
+                                        <!-- Header -->
+                                        <div class="tree-node organism-level" data-component="header">
+                                            <span class="tree-icon">🔷</span>
+                                            <span class="tree-label">Header</span>
+                                            <span class="tree-badge organism">Organism</span>
+                                            <span class="component-name">Header/Dashboard/Desktop</span>
+
+                                            <div class="tree-children">
+                                                <div class="tree-node atom-level" data-component="logo">
+                                                    <span class="tree-icon">⚛️</span>
+                                                    <span class="tree-label">Logo</span>
+                                                    <span class="tree-badge atom">Atom</span>
+                                                    <span class="component-name">Logo/Brand/Default</span>
+                                                </div>
+
+                                                <div class="tree-node molecule-level" data-component="navigation">
+                                                    <span class="tree-icon">🔹</span>
+                                                    <span class="tree-label">Navigation</span>
+                                                    <span class="tree-badge molecule">Molecule</span>
+                                                    <span class="component-name">Navigation/Primary/Horizontal</span>
+
+                                                    <div class="tree-children">
+                                                        <div class="tree-node atom-level" data-component="nav-item-1">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Nav Item</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Nav-Item/Primary/Default/Active</span>
+                                                        </div>
+                                                        <div class="tree-node atom-level" data-component="nav-item-2">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Nav Item</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Nav-Item/Primary/Default/Inactive</span>
+                                                        </div>
+                                                        <div class="tree-node atom-level" data-component="nav-item-3">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Nav Item</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Nav-Item/Primary/Default/Inactive</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tree-node molecule-level" data-component="user-menu">
+                                                    <span class="tree-icon">🔹</span>
+                                                    <span class="tree-label">User Menu</span>
+                                                    <span class="tree-badge molecule">Molecule</span>
+                                                    <span class="component-name">User-Menu/Dropdown/Default</span>
+
+                                                    <div class="tree-children">
+                                                        <div class="tree-node atom-level" data-component="avatar">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Avatar</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Avatar/User/Small/Default</span>
+                                                        </div>
+                                                        <div class="tree-node atom-level" data-component="dropdown-icon">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Icon</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Icon/Chevron/Down/Small</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sidebar -->
+                                        <div class="tree-node organism-level" data-component="sidebar">
+                                            <span class="tree-icon">🔷</span>
+                                            <span class="tree-label">Sidebar</span>
+                                            <span class="tree-badge organism">Organism</span>
+                                            <span class="component-name">Sidebar/Navigation/Expanded</span>
+
+                                            <div class="tree-children">
+                                                <div class="tree-node molecule-level" data-component="menu-item-1">
+                                                    <span class="tree-icon">🔹</span>
+                                                    <span class="tree-label">Menu Item</span>
+                                                    <span class="tree-badge molecule">Molecule</span>
+                                                    <span class="component-name">Menu-Item/Sidebar/Default/Active</span>
+
+                                                    <div class="tree-children">
+                                                        <div class="tree-node atom-level" data-component="menu-icon-1">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Icon</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Icon/Chart/Default/Medium</span>
+                                                        </div>
+                                                        <div class="tree-node atom-level" data-component="menu-label-1">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Label</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Text/Body/Regular/Small</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tree-node molecule-level" data-component="menu-item-2">
+                                                    <span class="tree-icon">🔹</span>
+                                                    <span class="tree-label">Menu Item</span>
+                                                    <span class="tree-badge molecule">Molecule</span>
+                                                    <span class="component-name">Menu-Item/Sidebar/Default/Inactive</span>
+
+                                                    <div class="tree-children">
+                                                        <div class="tree-node atom-level" data-component="menu-icon-2">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Icon</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Icon/Analytics/Default/Medium</span>
+                                                        </div>
+                                                        <div class="tree-node atom-level" data-component="menu-label-2">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Label</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Text/Body/Regular/Small</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tree-node molecule-level" data-component="menu-item-3">
+                                                    <span class="tree-icon">🔹</span>
+                                                    <span class="tree-label">Menu Item</span>
+                                                    <span class="tree-badge molecule">Molecule</span>
+                                                    <span class="component-name">Menu-Item/Sidebar/Default/Inactive</span>
+
+                                                    <div class="tree-children">
+                                                        <div class="tree-node atom-level" data-component="menu-icon-3">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Icon</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Icon/Settings/Default/Medium</span>
+                                                        </div>
+                                                        <div class="tree-node atom-level" data-component="menu-label-3">
+                                                            <span class="tree-icon">⚛️</span>
+                                                            <span class="tree-label">Label</span>
+                                                            <span class="tree-badge atom">Atom</span>
+                                                            <span class="component-name">Text/Body/Regular/Small</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Content -->
+                                        <div class="tree-node template-level" data-component="content">
+                                            <span class="tree-icon">📋</span>
+                                            <span class="tree-label">Main Content</span>
+                                            <span class="tree-badge template">Template</span>
+                                            <span class="component-name">Content/Dashboard/Main</span>
+
+                                            <div class="tree-children">
+                                                <!-- Stats Section -->
+                                                <div class="tree-node organism-level" data-component="stats-section">
+                                                    <span class="tree-icon">🔷</span>
+                                                    <span class="tree-label">Stats Section</span>
+                                                    <span class="tree-badge organism">Organism</span>
+                                                    <span class="component-name">Stats-Section/Dashboard/Grid</span>
+
+                                                    <div class="tree-children">
+                                                        <div class="tree-node molecule-level" data-component="stat-card-1">
+                                                            <span class="tree-icon">🔹</span>
+                                                            <span class="tree-label">Stat Card</span>
+                                                            <span class="tree-badge molecule">Molecule</span>
+                                                            <span class="component-name">Card/Stat/Vertical/Default</span>
+
+                                                            <div class="tree-children">
+                                                                <div class="tree-node atom-level" data-component="stat-icon-1">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Icon</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Icon/Money/Default/Large</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="stat-title-1">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Title</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Text/Caption/Regular/Small</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="stat-value-1">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Value</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Text/Heading/Bold/Large</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tree-node molecule-level" data-component="stat-card-2">
+                                                            <span class="tree-icon">🔹</span>
+                                                            <span class="tree-label">Stat Card</span>
+                                                            <span class="tree-badge molecule">Molecule</span>
+                                                            <span class="component-name">Card/Stat/Vertical/Default</span>
+
+                                                            <div class="tree-children">
+                                                                <div class="tree-node atom-level" data-component="stat-icon-2">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Icon</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Icon/Users/Default/Large</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="stat-title-2">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Title</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Text/Caption/Regular/Small</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="stat-value-2">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Value</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Text/Heading/Bold/Large</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tree-node molecule-level" data-component="stat-card-3">
+                                                            <span class="tree-icon">🔹</span>
+                                                            <span class="tree-label">Stat Card</span>
+                                                            <span class="tree-badge molecule">Molecule</span>
+                                                            <span class="component-name">Card/Stat/Vertical/Default</span>
+
+                                                            <div class="tree-children">
+                                                                <div class="tree-node atom-level" data-component="stat-icon-3">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Icon</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Icon/Package/Default/Large</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="stat-title-3">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Title</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Text/Caption/Regular/Small</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="stat-value-3">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Value</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Text/Heading/Bold/Large</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Table -->
+                                                <div class="tree-node organism-level" data-component="table">
+                                                    <span class="tree-icon">🔷</span>
+                                                    <span class="tree-label">Data Table</span>
+                                                    <span class="tree-badge organism">Organism</span>
+                                                    <span class="component-name">Table/Data/Default/Sortable</span>
+
+                                                    <div class="tree-children">
+                                                        <div class="tree-node molecule-level" data-component="table-header">
+                                                            <span class="tree-icon">🔹</span>
+                                                            <span class="tree-label">Table Header</span>
+                                                            <span class="tree-badge molecule">Molecule</span>
+                                                            <span class="component-name">Table-Header/Data/Default</span>
+
+                                                            <div class="tree-children">
+                                                                <div class="tree-node atom-level" data-component="header-cell-1">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Header Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Header/Text/Left</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="header-cell-2">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Header Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Header/Text/Left</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="header-cell-3">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Header Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Header/Text/Left</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tree-node molecule-level" data-component="table-row-1">
+                                                            <span class="tree-icon">🔹</span>
+                                                            <span class="tree-label">Table Row</span>
+                                                            <span class="tree-badge molecule">Molecule</span>
+                                                            <span class="component-name">Table-Row/Data/Default</span>
+
+                                                            <div class="tree-children">
+                                                                <div class="tree-node atom-level" data-component="cell-1-1">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Body/Text/Left</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="cell-1-2">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Body/Number/Right</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="cell-1-3">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Body/Number/Right</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tree-node molecule-level" data-component="table-row-2">
+                                                            <span class="tree-icon">🔹</span>
+                                                            <span class="tree-label">Table Row</span>
+                                                            <span class="tree-badge molecule">Molecule</span>
+                                                            <span class="component-name">Table-Row/Data/Default</span>
+
+                                                            <div class="tree-children">
+                                                                <div class="tree-node atom-level" data-component="cell-2-1">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Body/Text/Left</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="cell-2-2">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Body/Number/Right</span>
+                                                                </div>
+                                                                <div class="tree-node atom-level" data-component="cell-2-3">
+                                                                    <span class="tree-icon">⚛️</span>
+                                                                    <span class="tree-label">Cell</span>
+                                                                    <span class="tree-badge atom">Atom</span>
+                                                                    <span class="component-name">Table-Cell/Body/Number/Right</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 30px;">
+                    <h4 style="margin-top: 0;">💡 このデモから学べること</h4>
+                    <ul>
+                        <li><strong>階層構造:</strong> Atomic Designに基づいた、Atoms → Molecules → Organisms → Templates → Pagesの階層がどのように組み立てられるかを視覚的に理解できます。</li>
+                        <li><strong>再利用性:</strong> 同じコンポーネント(Nav Item、Menu Item、Stat Cardなど)が複数箇所で使われている様子が分かります。</li>
+                        <li><strong>バリエーション:</strong> 同じコンポーネントタイプ(Stat Card)が異なるデータで表示される例を確認できます。</li>
+                        <li><strong>構造の関係性:</strong> UIの見た目と内部構造の対応関係がインタラクティブに理解できます。</li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <h4 style="margin-top: 0;">🎯 Figmaでの実装時のポイント</h4>
+                    <ul>
+                        <li><strong>Atomsから構築:</strong> まずは最小単位(Logo、Icon、Labelなど)をコンポーネント化します。</li>
+                        <li><strong>Moleculesで組み合わせ:</strong> AtomsをまとめてMolecules(Nav Item、Menu Itemなど)を作成します。</li>
+                        <li><strong>Organismsで機能単位:</strong> Moleculesを組み合わせて機能ブロック(Header、Sidebar、Tableなど)を構築します。</li>
+                        <li><strong>バリアントで管理:</strong> 同じコンポーネントの異なる状態はバリアントプロパティで切り替えます。</li>
+                        <li><strong>命名規則の徹底:</strong> 各レベルで一貫した命名規則を使用することで、チーム全体での理解が深まります。</li>
+                    </ul>
+                </div>
+
+                <!-- 実装ステップバイステップガイド -->
+                <h3 style="margin-top: 50px; margin-bottom: 20px;">📝 ステップバイステップ実装ガイド</h3>
+
+                <div class="beginner-tip" style="background: #e0f2fe; border-left-color: #0284c7;">
+                    <h4 style="margin-top: 0;">🚀 実装の順序とベストプラクティス</h4>
+                    <p>Atomic Designは<strong>下から上へ（Atoms → Files）</strong>構築します。各レベルで以下のポイントに注意してください。</p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 25px; margin-top: 30px;">
+                    <!-- Step 1: Atoms -->
+                    <div style="border: 2px solid #047857; border-radius: 12px; padding: 20px; background: #f0fdf4;">
+                        <h4 style="color: #047857; margin-bottom: 15px;">Step 1: ⚛️ Atoms の作成</h4>
+                        <p><strong>作業場所:</strong> 01_DesignSystem - Master ファイル</p>
+                        <p><strong>目的:</strong> 最小単位の再利用可能なコンポーネントを定義</p>
+
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <h5 style="margin-bottom: 10px;">📋 実装手順</h5>
+                            <ol style="line-height: 1.8;">
+                                <li>FlyonUIのコンポーネントから使用するものを選定</li>
+                                <li>FlyonUIインスタンスを配置し、コンポーネント化（デタッチしない）</li>
+                                <li>必要なバリアントプロパティを定義：
+                                    <ul style="margin-top: 8px;">
+                                        <li><code>State</code>: Default, Hover, Active, Disabled</li>
+                                        <li><code>Size</code>: Small, Medium, Large</li>
+                                        <li><code>Type</code>: Primary, Secondary, Tertiary</li>
+                                    </ul>
+                                </li>
+                                <li>命名規則を適用: <code>{カテゴリ}/{タイプ}/{サイズ}/{状態}</code></li>
+                                <li>Color StylesとText Stylesを使用（ハードコード禁止）</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-top: 15px; border-left: 3px solid #f59e0b;">
+                            <p style="margin: 0;"><strong>💡 ポイント:</strong> FlyonUIにないAtomsが必要な場合は、自作します。その場合もバリアントとスタイルの一貫性を保ちます。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Molecules -->
+                    <div style="border: 2px solid #1e40af; border-radius: 12px; padding: 20px; background: #eff6ff;">
+                        <h4 style="color: #1e40af; margin-bottom: 15px;">Step 2: 🔹 Molecules の作成</h4>
+                        <p><strong>作業場所:</strong> 01_DesignSystem - Master ファイル</p>
+                        <p><strong>目的:</strong> Atomsを組み合わせた小さな機能単位を作成</p>
+
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <h5 style="margin-bottom: 10px;">📋 実装手順</h5>
+                            <ol style="line-height: 1.8;">
+                                <li>複数のAtomsインスタンスを配置</li>
+                                <li>Auto Layoutで配置（Direction、Padding、Gapを設定）</li>
+                                <li>Instance Swapプロパティで内部Atomsを切り替え可能に</li>
+                                <li>Boolean Propertyでオプション要素の表示/非表示を制御</li>
+                                <li>命名規則: <code>{名称}/{タイプ}/{方向や配置}</code></li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-top: 15px; border-left: 3px solid #f59e0b;">
+                            <p style="margin: 0;"><strong>💡 ポイント:</strong> Moleculesは意味のある最小機能単位です。検索フォーム、ナビゲーション項目、カード要素などが該当します。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Organisms -->
+                    <div style="border: 2px solid #92400e; border-radius: 12px; padding: 20px; background: #fef3c7;">
+                        <h4 style="color: #92400e; margin-bottom: 15px;">Step 3: 🔷 Organisms の作成</h4>
+                        <p><strong>作業場所:</strong> 01_DesignSystem - Master ファイル</p>
+                        <p><strong>目的:</strong> 独立した機能ブロックを構築</p>
+
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <h5 style="margin-bottom: 10px;">📋 実装手順</h5>
+                            <ol style="line-height: 1.8;">
+                                <li>MoleculesとAtomsのインスタンスを組み合わせ</li>
+                                <li>複雑なAuto Layout構造を設計（ネストしたレイアウト）</li>
+                                <li>デバイス対応のバリアント: Desktop, Tablet, Mobile</li>
+                                <li>状態管理: Expanded/Collapsed, Visible/Hidden など</li>
+                                <li>レスポンシブ対応: Min/Max Width を設定</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-top: 15px; border-left: 3px solid #f59e0b;">
+                            <p style="margin: 0;"><strong>💡 ポイント:</strong> Header、Footer、Sidebar、Navigation Barなど、複数のMoleculesで構成される複雑なコンポーネントです。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Templates -->
+                    <div style="border: 2px solid #6b21a8; border-radius: 12px; padding: 20px; background: #faf5ff;">
+                        <h4 style="color: #6b21a8; margin-bottom: 15px;">Step 4: 📋 Templates の作成</h4>
+                        <p><strong>作業場所:</strong> 02_ProductUI ファイル（または 01_DesignSystem）</p>
+                        <p><strong>目的:</strong> レイアウト構造を定義</p>
+
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <h5 style="margin-bottom: 10px;">📋 実装手順</h5>
+                            <ol style="line-height: 1.8;">
+                                <li>01_DesignSystemのOrganismsインスタンスを配置</li>
+                                <li>グリッドレイアウトやフレキシブルレイアウトを設計</li>
+                                <li>プレースホルダーコンテンツを使用</li>
+                                <li>コンテンツ領域のサイズ調整ロジックを実装</li>
+                                <li>Auto Layoutでレスポンシブ対応</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-top: 15px; border-left: 3px solid #f59e0b;">
+                            <p style="margin: 0;"><strong>💡 ポイント:</strong> Templatesはワイヤーフレームのようなもの。実際のコンテンツは入れず、構造だけを定義します。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Pages -->
+                    <div style="border: 2px solid #6b21a8; border-radius: 12px; padding: 20px; background: #f5f3ff;">
+                        <h4 style="color: #6b21a8; margin-bottom: 15px;">Step 5: 📄 Pages の作成</h4>
+                        <p><strong>作業場所:</strong> 02_ProductUI ファイル</p>
+                        <p><strong>目的:</strong> 実際のコンテンツを含む完成画面</p>
+
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <h5 style="margin-bottom: 10px;">📋 実装手順</h5>
+                            <ol style="line-height: 1.8;">
+                                <li>Templatesまたは直接Organismsインスタンスを配置</li>
+                                <li>実際のテキスト、画像、データを入力</li>
+                                <li>コンポーネントのバリアントを実際の状態に設定</li>
+                                <li>各種インタラクションの状態を表現（複数のPageで）</li>
+                                <li>デザインレビュー用にアノテーションを追加</li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-top: 15px; border-left: 3px solid #f59e0b;">
+                            <p style="margin: 0;"><strong>💡 ポイント:</strong> ここで初めて実際のユーザーが見る画面が完成します。開発チームへの仕様書としても機能します。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: Files -->
+                    <div style="border: 2px solid #4338ca; border-radius: 12px; padding: 20px; background: #eef2ff;">
+                        <h4 style="color: #4338ca; margin-bottom: 15px;">Step 6: 📁 Files の管理</h4>
+                        <p><strong>作業場所:</strong> Figmaプロジェクト全体</p>
+                        <p><strong>目的:</strong> 適切なファイル構成で管理</p>
+
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <h5 style="margin-bottom: 10px;">📋 ファイル構成</h5>
+                            <ol style="line-height: 1.8;">
+                                <li><strong>01_DesignSystem - Master</strong>
+                                    <ul style="margin-top: 8px;">
+                                        <li>すべてのAtoms, Molecules, Organismsを管理</li>
+                                        <li>FlyonUIライブラリへの依存を集約</li>
+                                        <li>チームライブラリとしてPublish</li>
+                                    </ul>
+                                </li>
+                                <li><strong>02_ProductUI</strong>
+                                    <ul style="margin-top: 8px;">
+                                        <li>01_DesignSystemライブラリを有効化</li>
+                                        <li>Templates, Pagesを配置</li>
+                                        <li>FlyonUIライブラリは最終的に無効化</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-top: 15px; border-left: 3px solid #f59e0b;">
+                            <p style="margin: 0;"><strong>💡 ポイント:</strong> この2ファイル構成により、依存関係がシンプルになり、保守性が向上します。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 依存関係と連携のまとめ -->
+                <div class="info-box" style="margin-top: 40px; background: #f0fdfa; border-left-color: #0d9488;">
+                    <h4 style="margin-top: 0;">🔗 依存関係と連携のまとめ</h4>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                        <h5 style="margin-bottom: 15px;">📊 依存の流れ</h5>
+                        <pre style="background: #f8f9fa; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 0.9em; line-height: 1.6;">
+FlyonUI Library
+    ↓ (Instance → Component)
+<strong>01_DesignSystem - Master</strong>
+    ├── Atoms (FlyonUIをラップ)
+    ├── Molecules (Atomsを組み合わせ)
+    └── Organisms (MoleculesとAtomsを組み合わせ)
+        ↓ (Team Library)
+<strong>02_ProductUI</strong>
+    ├── Templates (Organismsを配置)
+    └── Pages (実際のコンテンツ)</pre>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h5 style="margin-bottom: 10px;">🎯 各レベルでのFlyonUI連携</h5>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Atoms:</strong> FlyonUIコンポーネントを直接ラップ、または自作</li>
+                            <li><strong>Molecules:</strong> ラップしたAtomsまたはFlyonUIコンポーネントを組み合わせ</li>
+                            <li><strong>Organisms:</strong> 自社のMoleculesとAtomsのみを使用（FlyonUIは間接的）</li>
+                            <li><strong>Templates/Pages:</strong> 自社のOrganismsのみを使用（FlyonUI依存なし）</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h5 style="margin-bottom: 10px;">⚡ バリアントとインスタンスの使い分け</h5>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 10px; background: white;">
+                            <thead>
+                                <tr style="background: #f8f9fa;">
+                                    <th style="padding: 10px; text-align: left; border: 1px solid #e5e7eb;">概念</th>
+                                    <th style="padding: 10px; text-align: left; border: 1px solid #e5e7eb;">使用目的</th>
+                                    <th style="padding: 10px; text-align: left; border: 1px solid #e5e7eb;">例</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;"><strong>Variant</strong></td>
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;">同じコンポーネントの異なる状態</td>
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;">Button の Default/Hover/Active</td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;"><strong>Instance</strong></td>
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;">コンポーネントの実体を配置</td>
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;">Header内にLogo, Nav, User-Menuのインスタンス</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;"><strong>Instance Swap</strong></td>
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;">インスタンスを動的に切り替え</td>
+                                    <td style="padding: 10px; border: 1px solid #e5e7eb;">Stat Card内のIconを変更可能に</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- セクションまとめ -->
+                <div class="success-box" style="margin-top: 40px;">
+                    <h4 style="margin-top: 0;">🎓 このセクションで学んだこと</h4>
+                    <ul style="line-height: 1.8;">
+                        <li>✅ Atomic Designの6階層（Files → Pages → Templates → Organisms → Molecules → Atoms）の役割</li>
+                        <li>✅ 各階層のFigmaでの実装方法と命名規則</li>
+                        <li>✅ FlyonUIハイブリッド戦略との連携方法</li>
+                        <li>✅ バリアント、インスタンス、Instance Swapの使い分け</li>
+                        <li>✅ 下から上への構築順序とその理由</li>
+                        <li>✅ 依存関係の管理と保守性の向上方法</li>
+                    </ul>
+                </div>
+
+                <div class="beginner-tip" style="margin-top: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                    <h4 style="margin-top: 0; color: white;">🚀 次のステップ</h4>
+                    <p style="line-height: 1.8;">
+                        Atomic Design階層の理解ができたら、<a href="#workflow" style="color: #fef3c7; text-decoration: underline; font-weight: 600;">実践ワークフロー</a>セクションで実際の作業の進め方を確認しましょう。
+                        また、<a href="#figma-mcp" style="color: #fef3c7; text-decoration: underline; font-weight: 600;">AIレビュー</a>を活用して、作成したコンポーネントの品質をチェックすることもお勧めです。
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <strong>💡 実践のコツ:</strong> 最初から完璧を目指さず、小さなコンポーネントから始めて、徐々に複雑なものを作っていきましょう。失敗しながら学ぶことが、最も効果的な学習方法です。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 最終セクション -->
+            <div class="final-section">
+                <h2>🎉 さあ、始めましょう!</h2>
+                <p style="font-size: 1.2em; margin: 20px 0;">
+                    このガイドを参考に、一歩ずつ進めていけば大丈夫です。<br>
+                    完璧を目指さず、まずは手を動かして、失敗しながら学んでいきましょう。
+                </p>
+                <div style="margin-top: 30px;">
+                    <h3 style="color: white; border: none; margin-bottom: 15px;">最初の一歩</h3>
+                    <ol style="text-align: left; display: inline-block; font-size: 1.1em;">
+                        <li>FlyonUIのドキュメントを30分読む</li>
+                        <li>01_DesignSystem - Masterファイルを作成</li>
+                        <li>FlyonUIライブラリを追加</li>
+                        <li>推奨プラグインを3つインストール</li>
+                        <li>簡単な画面を1つ作ってみる</li>
+                        <li>FigmaMCPをセットアップしてAIレビューを試す</li>
+                    </ol>
+                </div>
+                <p style="margin-top: 30px; font-size: 1.1em;">
+                    <strong>応援しています!🚀</strong>
+                </p>
+            </div>
+        </div>
     </div>
 
-    <div class="container" id="app">
-        <!-- Content will be rendered by JavaScript -->
-    </div>
+    <script>
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(function () {
+                alert('プロンプトをコピーしました!');
+            }, function (err) {
+                console.error('コピーに失敗しました: ', err);
+            });
+        }
 
-    <script src="translations.js"></script>
-    <script src="app.js"></script>
+        // Figma階層アコーディオンの折りたたみ/展開
+        function toggleLevel(levelName) {
+            const levelItem = document.querySelector(`[data-level="${levelName}"]`);
+            const content = document.getElementById(`level-${levelName}`);
+            
+            if (!levelItem || !content) return;
+            
+            const isExpanded = content.style.display !== 'none';
+            
+            if (isExpanded) {
+                content.style.display = 'none';
+                levelItem.classList.remove('expanded');
+            } else {
+                content.style.display = 'block';
+                levelItem.classList.add('expanded');
+            }
+        }
+
+        // インタラクティブなコンポーネント構造のホバーハイライト機能
+        document.addEventListener('DOMContentLoaded', function () {
+            // UIプレビュー、ツリーノード、Figma階層パネルの要素を取得
+            const uiElements = document.querySelectorAll('.ui-preview [data-component], .component-tree [data-component]');
+            const treeNodes = document.querySelectorAll('.tree-node[data-component]');
+            const figmaLayers = document.querySelectorAll('.figma-layer[data-component], .figma-component-preview[data-component]');
+
+            // 固定されたコンポーネントID
+            let pinnedComponentId = null;
+
+            // ホバー時のハイライト関数
+            function highlightComponent(componentId) {
+                // 固定されている場合は、ホバーハイライトをスキップ
+                if (pinnedComponentId) return;
+
+                // すべてのハイライトをクリア
+                clearHighlights();
+
+                if (!componentId) return;
+
+                // UIプレビューとツリー両方で該当するコンポーネントをハイライト
+                const targetElements = document.querySelectorAll(`[data-component="${componentId}"]`);
+                targetElements.forEach(el => {
+                    el.classList.add('highlighted');
+                });
+            }
+
+            function clearHighlights() {
+                const highlightedElements = document.querySelectorAll('.highlighted');
+                highlightedElements.forEach(el => {
+                    el.classList.remove('highlighted');
+                });
+            }
+
+            // クリックで固定ハイライト
+            function pinComponent(componentId) {
+                // すべての固定ハイライトをクリア
+                const pinnedElements = document.querySelectorAll('.pinned');
+                pinnedElements.forEach(el => {
+                    el.classList.remove('pinned');
+                });
+
+                // 既に固定されている場合は解除
+                if (pinnedComponentId === componentId) {
+                    pinnedComponentId = null;
+                    clearHighlights();
+                    return;
+                }
+
+                // 新しいコンポーネントを固定
+                pinnedComponentId = componentId;
+                clearHighlights();
+
+                if (!componentId) return;
+
+                // UIプレビューとツリー両方で該当するコンポーネントを固定ハイライト
+                const targetElements = document.querySelectorAll(`[data-component="${componentId}"]`);
+                targetElements.forEach(el => {
+                    el.classList.add('pinned');
+                });
+            }
+
+            // UIプレビューの要素にイベントを追加
+            uiElements.forEach(element => {
+                element.addEventListener('mouseenter', function () {
+                    if (!pinnedComponentId) {
+                        const componentId = this.getAttribute('data-component');
+                        highlightComponent(componentId);
+                    }
+                });
+
+                element.addEventListener('mouseleave', function () {
+                    if (!pinnedComponentId) {
+                        clearHighlights();
+                    }
+                });
+
+                element.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const componentId = this.getAttribute('data-component');
+                    pinComponent(componentId);
+                });
+            });
+
+            // ツリーノードにイベントを追加
+            treeNodes.forEach(node => {
+                node.addEventListener('mouseenter', function (e) {
+                    // イベントの伝播を停止して、親ノードのハイライトを防ぐ
+                    e.stopPropagation();
+                    if (!pinnedComponentId) {
+                        const componentId = this.getAttribute('data-component');
+                        highlightComponent(componentId);
+                    }
+                });
+
+                node.addEventListener('mouseleave', function () {
+                    if (!pinnedComponentId) {
+                        clearHighlights();
+                    }
+                });
+
+                node.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const componentId = this.getAttribute('data-component');
+                    pinComponent(componentId);
+                });
+            });
+
+            // 階層パネル要素にイベントを追加
+            // Figma階層パネルの要素にイベントリスナーを追加
+            figmaLayers.forEach(element => {
+                element.addEventListener('mouseenter', function (e) {
+                    e.stopPropagation();
+                    if (!pinnedComponentId) {
+                        const componentId = this.getAttribute('data-component');
+                        highlightComponent(componentId);
+                    }
+                });
+
+                element.addEventListener('mouseleave', function () {
+                    if (!pinnedComponentId) {
+                        clearHighlights();
+                    }
+                });
+
+                element.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const componentId = this.getAttribute('data-component');
+                    pinComponent(componentId);
+                });
+            });
+
+            // 背景クリックで固定解除
+            document.addEventListener('click', function (e) {
+                // Figma階層パネル、UIプレビュー、ツリー内のクリックは無視
+                if (e.target.closest('.figma-level-item') ||
+                    e.target.closest('.ui-preview') ||
+                    e.target.closest('.component-tree')) {
+                    return;
+                }
+                if (pinnedComponentId) {
+                    pinComponent(null);
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
